@@ -5,7 +5,7 @@
 #include "utilitymacs.h"
 
 #define KQPStackDS(TYPE, SIZE) struct { TYPE data[SIZE]; U64 top;  }
-#define KQPStackName(NAME) PASTE(NAME, _stack)
+#define KQPStackName(NAME) PasteTokens(NAME, _stack)
 #define KQPStackCreate(TYPE, SIZE, NAME) KQPStackDS(TYPE, SIZE) KQPStackName(NAME) = {0}
 #define KQPStackSize(NAME, TYPE) ((sizeof(KQPStackName(NAME)) - sizeof(U64)) / sizeof(TYPE))
 #define KQPStackTop(NAME) KQPStackName(NAME).top
@@ -22,7 +22,7 @@
 
 #define KQPStackPop(NAME, DEST)									\
 	do {														\
-		if (KQPStackAtTo(NAME)) {								\
+		if (KQPStackAtTop(NAME)) {								\
 			ErrorFMT(ERR_STACK_UNDERFLOW, ToString(NAME));		\
 		}														\
 		DEST = KQPStackName(NAME).data[--KQPStackTop(NAME)];	\
