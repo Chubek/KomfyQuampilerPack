@@ -13,25 +13,26 @@
 #define QueueLen(NAME, TYPE) (((QueueSize(NAME)) - (sizeof(U64) << 1)) / sizeof(TYPE))
 #define QueueIsOverflown(NAME) (QueueTail(NAME) == QueueLen(NAME) - 1)
 #define QueueIsUnderflown(NAME) (QueueHead(NAME) == QueueTail(NAME))
+#define QueueIsEmpty(NAME) (QueueHead(NAME) == QueueTail(NAME))
 
-#define QueueEnqueue(NAME, VALUE)									\
+#define QueueEnqueue(NAME, ValueExpr)									\
 		do {															\
 			if (QueueIsOverflown(NAME)) {							\
 				ErrorFMT(ERR_QUEUE_OVERFLOW, NAME);						\
 			} else {													\
-				QueueName(NAME).data[QueueTail(NAME)] = VALUE;	\
+				QueueName(NAME).data[QueueTail(NAME)] = (ValueExpr);	\
 				if (QueueTail(NAME) == QueueLen(NAME)) 			\
 					QueueTail(NAME) == 1;							\
 				else QueueTail(NAME)++;								\
 			}															\
 		} while (0)
 
-#define QueueDequeue(NAME, DEST)										\
+#define QueueDequeue(NAME, DestExpr)										\
 		do {															\
 			if (QueueIsUndeflown(NAME)) {							\
 				ErrorFMT(ERR_QUEUE_UNDER, NAME);						\
 			} else {													\
-				DEST = QueueName(NAME).data[QueueTail(NAME)];		\
+				DestExpr = QueueName(NAME).data[QueueTail(NAME)];		\
 				if (QueueHead(NAME) == QueueLen(NAME)) 			\
 					QueueHead(NAME) == 1;							\
 				else QueueHead(NAME)++;								\

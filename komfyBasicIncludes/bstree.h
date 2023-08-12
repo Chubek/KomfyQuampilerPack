@@ -16,7 +16,7 @@
 #define BsTreeParentOffset(TYPE) (sizeof(TYPE) + sizeof(MemAddr))
 #define BsTreeLeftOffset(TYPE) (sizeof(TYPE) + (sizeof(MemAddr) * 2))
 #define BsTreeRightOffset(TYPE) (sizeof(TYPE) + (sizeof(MemAddr) * 3))
-#define BsTreeCreate(TYPE, NAME, KeyExpr) BsTreeDS(TYPE) BsTreeName(NAME) = { .key = (KeyExpr), .root = (MemAddr)0, .parent = (MemAddr)0, .left = (MemAddr)0, .right = (MemAddr)0, }, BsTreeRoot(NAME) = &BsTreeName(NAME)
+#define BsTreeCreate(TYPE, NAME, KeyExpr, LeftExpr, RightExpr) BsTreeDS(TYPE) BsTreeName(NAME) = { .key = (KeyExpr), .root = (MemAddr)0, .parent = (MemAddr)0, .left = (LeftExpr), .right = (RightExpr), }, BsTreeRoot(NAME) = &BsTreeName(NAME)
 
 #define BsTreeInsert(TREE, ITEM)									\
 	do {															\
