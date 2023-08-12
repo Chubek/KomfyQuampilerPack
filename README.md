@@ -1,6 +1,7 @@
 # KQP: The Komfy Quampiler Pack
 #### Compiler Design and Implementation in Terms of Micro-DSLs
 
+
 ## Mission Statement
 
 The 'Komfy Quampiler Pack' is a general toolchain, similar to GCC. It approaches compiler design in terms of extremely targeted 'micro-DSL' languages.
@@ -42,3 +43,7 @@ Discord: .chubak
 ## KQP Elsewhere:
 
 * Reddit: `reddit.com/r/KomfyQuampilerPack`
+
+## Patrons
+
+I owe an incredible debt to Dr. Kevin Moran for funding KQP. If you wish to bankroll KQP (when it's viable that is, I'm writing this as some sort of 'The Secret' self-assertion) please visit my profile, or contact me.
